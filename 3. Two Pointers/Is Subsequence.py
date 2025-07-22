@@ -1,39 +1,45 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        i = 0 # Pointer for string s
-        j = 0 # Pointer for string t
 
-        while i < len(s) and j < len(t):
-            if s[i] == t[j]:
-                i += 1 # Move s pointer only if characters match
-            j += 1     # Always move t pointer
+       # Get the length of both input strings s and t
+        S = len(s)
+        T = len(t)
 
-        # If i reaches the end of s, it means all characters of s were found in t in order
-        return i == len(s)
+        # If string s is empty, it is always a subsequence of any string, so return True
+        if s == '':
+            return True
+
+        # If string s is longer than string t, it can't be a subsequence, so return False
+        if S > T:
+            return False
+
+        # Initialize a pointer j to track the current index of string s
+        j = 0
+
+        # Iterate over each character in string t using index i
+        for i in range(T):
+            # If the current character in t matches the current character in s (s[j]),
+            # check if we have matched the entire string s
+            if t[i] == s[j]:
+                # If we are at the last character of s, it means s is a subsequence of t
+                if j == S - 1:
+                    return True
+                # Move to the next character in s by incrementing j
+                j += 1
+
+        # If the loop completes and we haven't returned True, s is not a subsequence of t
+        return False
+
+
 
 # Test Cases
 sol = Solution()
 
 print(f"s = 'abc', t = 'ahbgdc' -> {sol.isSubsequence('abc', 'ahbgdc')}")
-# Expected: True
-
 print(f"s = 'axc', t = 'ahbgdc' -> {sol.isSubsequence('axc', 'ahbgdc')}")
-# Expected: False
-
 print(f"s = '', t = 'ahbgdc' -> {sol.isSubsequence('', 'ahbgdc')}")
-# Expected: True (empty string is always a subsequence)
-
 print(f"s = 'abc', t = '' -> {sol.isSubsequence('abc', '')}")
-# Expected: False
-
 print(f"s = 'ace', t = 'abcde' -> {sol.isSubsequence('ace', 'abcde')}")
-# Expected: True
-
 print(f"s = 'abc', t = 'abc' -> {sol.isSubsequence('abc', 'abc')}")
-# Expected: True
-
 print(f"s = 'sing', t = 'sting' -> {sol.isSubsequence('sing', 'sting')}")
-# Expected: True
-
 print(f"s = 'basic', t = 'abracadabra' -> {sol.isSubsequence('basic', 'abracadabra')}")
-# Expected: False
