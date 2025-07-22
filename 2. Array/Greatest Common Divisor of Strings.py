@@ -13,9 +13,10 @@ def gcd_of_strings(str1: str, str2: str) -> str:
     len2 = len(str2)
     
     # Use math.gcd for the numerical GCD
+    # Eg: len(str1) = 6 and len(str2) = 4 so gcd(4,6) is 2  
     gcd_length = math.gcd(len1, len2)
 
-    # Step 3: Extract the GCD string
+    # Step 3: Extract the GCD string till the gcd_length from the str1
     # The GCD string is the prefix of either string with the calculated gcd_length.
     return str1[:gcd_length]
 
