@@ -2,31 +2,21 @@ from typing import List
 
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-
         n = len(nums)
-        
-        # Initialize prefix and suffix arrays
-        prefix_products = [1] * n
-        suffix_products = [1] * n
-        
-        # Calculate prefix products
-        # prefix_products[i] will contain the product of all elements to the left of i
-        # For index 0, there are no elements to the left, so it's 1
+        res = [0] * n
+        pref = [0] * n
+        suff = [0] * n
+
+        pref[0] = 1
+        suff[n - 1] = 1
+
         for i in range(1, n):
-            prefix_products[i] = prefix_products[i-1] * nums[i-1]
-            
-        # Calculate suffix products
-        # suffix_products[i] will contain the product of all elements to the right of i
-        # For the last index (n-1), there are no elements to the right, so it's 1
-        for i in range(n - 2, -1, -1): # Iterate from n-2 down to 0
-            suffix_products[i] = suffix_products[i+1] * nums[i+1]
-            
-        # Calculate the final answer
-        answer = [0] * n
+            pref[i] = nums[i - 1] * pref[i - 1]
+        for i in range(n - 2, -1, -1):
+            suff[i] = nums[i + 1] * suff[i + 1]
         for i in range(n):
-            answer[i] = prefix_products[i] * suffix_products[i]
-            
-        return answer
+            res[i] = pref[i] * suff[i] 
+        return res
 
 # Test Cases
 sol = Solution()
@@ -39,3 +29,17 @@ print(f"Input: [5], Output: {sol.productExceptSelf([5])}")
 # Note: LeetCode problem statement implies n >= 2, but a single element test is good for robustness.
 # If n=1, the product of elements *except* self would technically be 1.
 print(f"Input: [2,3], Output: {sol.productExceptSelf([2,3])}")
+
+
+# BRUTE FORCE SOLUTION 
+
+#         ans = []
+#         for i in range(len((nums))):
+#             ans_sum = 1
+#             for j in range(len(nums)):
+#                 if i == j:
+#                     continue
+#                 else:
+#                     ans_sum *= nums[j]
+#             ans.append(ans_sum)
+#         return ans
