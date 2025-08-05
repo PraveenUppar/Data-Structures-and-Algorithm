@@ -3,12 +3,17 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        nums1 = nums1[:m]
-        i = 0
 
-        while i < n:
-            nums1.append(nums2[i])
-            i += 1
-        nums1.sort()
-        return(nums1)
+        nums1[m:] = nums2[:n]
+        return nums1.sort()
+    
+        # This also Works 
+        # nums1 = nums1[:m]
+        # i = 0
+
+        # while i < n:
+        #     nums1.append(nums2[i])
+        #     i += 1
+        # nums1.sort()
+        # return(nums1)
         
