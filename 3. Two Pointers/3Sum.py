@@ -23,6 +23,7 @@ class Solution:
                 curr_sum = a + nums[left] + nums[right]
                 if curr_sum == 0:
                     ans.append([a, nums[left], nums[right]])
+                    # if there are still pending elemetns in-between left and right pointer
                     right -= 1
                     left += 1
                     while nums[left] == nums[left - 1] and left < right:
@@ -42,6 +43,5 @@ class Solution:
         #     for j in range(i+1,len(nums)):
         #         for k in range(j+1,len(nums)):
         #             if nums[i] + nums[j] + nums[k] == 0:
-        #                 temp = [nums[i],nums[j],nums[k]]:
-        #                 ans.add(tuple(temp))
-        # return [list(i) for i in ans]
+        #                 ans.add[nums[i],nums[j],nums[k]]:
+        # return list(ans)
