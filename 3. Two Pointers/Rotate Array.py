@@ -5,6 +5,8 @@ class Solution:
         """
         # handle edge case wheere k > len(nums)
         k = k % len(nums)
+        if k == 0:
+            return nums
         nums[:k], nums[k:] = nums[-k:], nums[:-k]
         # [1,2,3,4],[5,6,7] = [5,6,7],[1,2,3,4]
         return nums
