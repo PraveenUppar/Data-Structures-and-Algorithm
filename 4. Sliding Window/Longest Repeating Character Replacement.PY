@@ -1,17 +1,25 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
 
-        # Brute Force - TLE
-        # max_count = 0
+        # left pointer 
+        left = 0
+        # hash map to store the freq of letter
+        counter = defaultdict(int)
+        # highest freq among the hash map
+        max_freq = 0
+        # maxmium length found till now
+        max_length = 0
 
-        # for i in range(len(s)):
-        #     count = 1
-        #     change = 0
-        #     for j in range(i+1,len(s)):
-        #         if s[i] == s[j]:
-        #             count += 1
-        #         if s[i] != s[j] and change < k:
-        #             count += 1
-        #             change += 1
-        #     max_count = max(count,max_count)
-        # return max_count 
+        # right pointer iterating the loop
+        for right in range(len(s)):
+            # if the currenet index element in the hash map is found then ++1
+            counter[s[right]] += 1
+            # check the highest element present in the hash map till now
+            max_freq = max(max_freq,counter[s[right]])
+            # Check is the condition is true else move the left pointer
+            # (window_size) - max_freq > k 
+            if right - left + 1 - max_freq > k:
+                counter[s[left]] -= 1
+                left += 1
+            max_length = max(max_length,right-left+1)
+        return max_length
