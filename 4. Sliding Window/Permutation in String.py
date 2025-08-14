@@ -2,6 +2,7 @@ class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
 
         # s1 = "ab" and s2 = "eiaboo"
+        # Using counter as sliding window
 
         if len(s1) > len(s2):
             return False
