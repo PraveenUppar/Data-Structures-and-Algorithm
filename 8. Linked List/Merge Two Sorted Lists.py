@@ -24,6 +24,6 @@ class Solution:
             temp.next = list2
         return res.next
 
-        # 
+        # res → dummy → 1 → 1 → 2 → 3 → 4 -> 4
         
 
