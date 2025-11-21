@@ -21,7 +21,7 @@ class Solution:
             board[i][j] = "#"
 
             found = (dfs(i+1, j, index + 1) or dfs(i-1, j, index + 1) or dfs(i, j+1, index + 1) or dfs(i, j-1, index + 1))
-            board[i][j] == tmp
+            board[i][j] = tmp
             return found
         
         for i in range(m):
