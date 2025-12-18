@@ -21,6 +21,7 @@ class Solution:
 
             if (curr_row, curr_cols) == (row - 1,cols - 1):
                 return max_effort
+            
             visited.add((curr_row,curr_cols))
 
             for dr,dc in dirs:
