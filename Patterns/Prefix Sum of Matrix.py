@@ -2,8 +2,6 @@
 
 # A prefix sum matrix is a new matrix sum[][] where:
 # sum[i][j] represents the sum of all elements in the rectangle from (0,0) to (i-1,j-1) in the original matrix.
-
-
 class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):

@@ -1,26 +1,29 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
 
-        subarray_char = set()
-        count = 0
+        longest = 0
         left = 0
+        curr = set()
 
         for right in range(len(s)):
-            while s[right] in subarray_char:
-                subarray_char.remove(s[left])
-                s += 1
-            subarray_char.add(s[right])
-            count = max(count,right-left+1)
-        return count
+            while s[right] in curr:
+                curr.remove(s[left])
+                left += 1
+            curr.add(s[right])
+            longest = max(longest, len(curr))
+        return longest
 
-        # Brute Force - TLE O(n∗m)
-        # count = 0
+        # Works but slow
+        # longest = 0
 
         # for i in range(len(s)):
-        #     subarray_char = set()
-        #     for j in range(i,len(s)):
-        #         if s[j] in subarray_char:
+        #     curr = set()
+        #     for j in range(i, len(s)):
+        #         if s[j] in curr:
         #             break
-        #         subarray_char.add(s[j])
-        #     count = max(count,len(subarray_char))
-        # return count        
+        #         curr.add(s[j])
+        #         longest = max(longest, len(curr))
+        # return longest
+
+        
+         
